@@ -85,10 +85,10 @@ def add_staff_save(request):
             user=CustomUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=2)
             user.staffs.address=address
             user.save()
-            messages.success(request,"Successfully Added Staff")
+            messages.success(request,"O'qituvchi muvaffaqiyatli qo‘shildi")
             return HttpResponseRedirect(reverse("add_staff"))
         except:
-            messages.error(request,"Failed to Add Staff")
+            messages.error(request,"O'qituvchini qo‘shib bo‘lmadi")
             return HttpResponseRedirect(reverse("add_staff"))
 
 def add_course(request):
@@ -102,11 +102,11 @@ def add_course_save(request):
         try:
             course_model=Courses(course_name=course)
             course_model.save()
-            messages.success(request,"Successfully Added Course")
+            messages.success(request,"Guruh muvaffaqiyatli qo'shildi")
             return HttpResponseRedirect(reverse("add_course"))
         except Exception as e:
             print(e)
-            messages.error(request,"Failed To Add Course")
+            messages.error(request,"Guruhni qo'shib bo'lmadi")
             return HttpResponseRedirect(reverse("add_course"))
 
 def add_student(request):
@@ -129,10 +129,10 @@ def add_student_save(request):
             course_id=form.cleaned_data["course"]
             sex=form.cleaned_data["sex"]
 
-            profile_pic=request.FILES['profile_pic']
-            fs=FileSystemStorage()
-            filename=fs.save(profile_pic.name,profile_pic)
-            profile_pic_url=fs.url(filename)
+            # profile_pic=request.FILES['profile_pic']
+            # fs=FileSystemStorage()
+            # filename=fs.save(profile_pic.name,profile_pic)
+            # profile_pic_url=fs.url(filename)
 
             try:
                 user=CustomUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=3)
@@ -142,9 +142,9 @@ def add_student_save(request):
                 session_year=SessionYearModel.object.get(id=session_year_id)
                 user.students.session_year_id=session_year
                 user.students.gender=sex
-                user.students.profile_pic=profile_pic_url
+                # user.students.profile_pic=profile_pic_url
                 user.save()
-                messages.success(request,"Successfully Added Student")
+                messages.success(request,"O’quvchi muvaffaqiyatli qo‘shildi")
                 return HttpResponseRedirect(reverse("add_student"))
             except:
                 messages.error(request,"Failed to Add Student")
@@ -172,10 +172,10 @@ def add_subject_save(request):
         try:
             subject=Subjects(subject_name=subject_name,course_id=course,staff_id=staff)
             subject.save()
-            messages.success(request,"Successfully Added Subject")
+            messages.success(request,"Fan muvaffaqiyatli qo‘shildi")
             return HttpResponseRedirect(reverse("add_subject"))
         except:
-            messages.error(request,"Failed to Add Subject")
+            messages.error(request,"Fanni qo‘shib bo‘lmadi")
             return HttpResponseRedirect(reverse("add_subject"))
 
 
@@ -221,10 +221,10 @@ def edit_staff_save(request):
             staff_model=Staffs.objects.get(admin=staff_id)
             staff_model.address=address
             staff_model.save()
-            messages.success(request,"Successfully Edited Staff")
+            messages.success(request,"O'qituvchi muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("edit_staff",kwargs={"staff_id":staff_id}))
         except:
-            messages.error(request,"Failed to Edit Staff")
+            messages.error(request,"O'qituvchini tahrirlab bo‘lmadi")
             return HttpResponseRedirect(reverse("edit_staff",kwargs={"staff_id":staff_id}))
 
 def edit_student(request,student_id):
@@ -288,10 +288,10 @@ def edit_student_save(request):
                     student.profile_pic=profile_pic_url
                 student.save()
                 del request.session['student_id']
-                messages.success(request,"Successfully Edited Student")
+                messages.success(request,"O'quvchi muvaffaqiyatli tahrirlandi")
                 return HttpResponseRedirect(reverse("edit_student",kwargs={"student_id":student_id}))
             except:
-                messages.error(request,"Failed to Edit Student")
+                messages.error(request,"O'quvchini tahrirlab bo‘lmadi")
                 return HttpResponseRedirect(reverse("edit_student",kwargs={"student_id":student_id}))
         else:
             form=EditStudentForm(request.POST)
@@ -322,10 +322,10 @@ def edit_subject_save(request):
             subject.course_id=course
             subject.save()
 
-            messages.success(request,"Successfully Edited Subject")
+            messages.success(request,"Fan muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("edit_subject",kwargs={"subject_id":subject_id}))
         except:
-            messages.error(request,"Failed to Edit Subject")
+            messages.error(request,"Fannini tahrirlab bo‘lmadi")
             return HttpResponseRedirect(reverse("edit_subject",kwargs={"subject_id":subject_id}))
 
 
@@ -345,10 +345,10 @@ def edit_course_save(request):
             print(Courses.course_name)
             course.course_name=course_name
             course.save()
-            messages.success(request,"Successfully Edited Course")
+            messages.success(request,"Guruh muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("edit_course",kwargs={"course_id":course_id}))
         except:
-            messages.error(request,"Failed to Edit Course")
+            messages.error(request,"Guruhni tahrirlab bo‘lmadi")
             return HttpResponseRedirect(reverse("edit_course",kwargs={"course_id":course_id}))
 
 
@@ -365,10 +365,10 @@ def add_session_save(request):
         try:
             sessionyear=SessionYearModel(session_start_year=session_start_year,session_end_year=session_end_year)
             sessionyear.save()
-            messages.success(request, "Successfully Added Session")
+            messages.success(request, "O'quv yili muvaffaqiyatli qo‘shildi")
             return HttpResponseRedirect(reverse("manage_session"))
         except:
-            messages.error(request, "Failed to Add Session")
+            messages.error(request, "O'quv yilini qo‘shib bo‘lmadi")
             return HttpResponseRedirect(reverse("manage_session"))
 
 @csrf_exempt
@@ -507,10 +507,10 @@ def admin_profile_save(request):
             # if password!=None and password!="":
             #     customuser.set_password(password)
             customuser.save()
-            messages.success(request, "Successfully Updated Profile")
+            messages.success(request, "Profil muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("admin_profile"))
         except:
-            messages.error(request, "Failed to Update Profile")
+            messages.error(request, "Profilni tahrirlab bo‘lmadi")
             return HttpResponseRedirect(reverse("admin_profile"))
 
 def admin_send_notification_student(request):

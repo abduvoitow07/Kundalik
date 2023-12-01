@@ -34,10 +34,10 @@ Yangi o'qituvchi
                     <label>Ism</label>
                     <input type="text" class="form-control" placeholder="Ism" name="last_name">
                   </div>
-                   <!-- <div class="form-group">
-                    <label>Foydalanuvchi nomi</label>
-                    <input type="text" class="form-control" placeholder="Foydalanuvchi nomi" name="username" id="id_username" autocomplete="off">
-                  </div> -->
+                   <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" placeholder="Username" name="username" id="id_username" autocomplete="off">
+                  </div>
                   <div class="form-group">
                     <label>Manzil</label>
                     <input type="text" class="form-control" placeholder="Manzil" name="address">
@@ -59,7 +59,7 @@ Yangi o'qituvchi
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Saqlash</button>
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Saqlash</button>
                 </div>
               </form>
             </div>
@@ -81,7 +81,7 @@ Yangi o'qituvchi
 
            if(email!=""){
                 $.ajax({
-                    url:'{% url 'check_email_exist' %}',
+                    url:"{% url 'check_email_exist' %}",
                     type:'POST',
                     data:{email:email}
                 })
@@ -89,11 +89,11 @@ Yangi o'qituvchi
                     console.log(response);
                     if(response=="True"){
                         $(".email_error").remove();
-                        $("<span class='email_error' style='padding: 5px;color: red;font-weight: bold;'>Email Not Available</span>").insertAfter("#id_email");
+                        $("<span class='email_error' style='padding: 5px;color: red;font-weight: bold;'>Ushbu email band</span>").insertAfter("#id_email");
                     }
                     else{
                         $(".email_error").remove();
-                        $("<span class='email_error' style='padding: 5px;color: green;font-weight: bold;'>Email Available</span>").insertAfter("#id_email");
+                        $("<span class='email_error' style='padding: 5px;color: green;font-weight: bold;'>Foydalanish mumkin</span>").insertAfter("#id_email");
                     }
                 })
                 .fail(function(){
@@ -111,7 +111,7 @@ Yangi o'qituvchi
 
             if(username!=""){
                 $.ajax({
-                    url:'{% url 'check_username_exist' %}',
+                    url:"{% url 'check_username_exist' %}",
                     type:'POST',
                     data:{username:username}
                 })
@@ -119,15 +119,15 @@ Yangi o'qituvchi
                     console.log(response);
                     if(response=="True"){
                         $(".username_error").remove();
-                        $("<span class='username_error' style='padding: 5px;color: red;font-weight: bold;'>Username Not Available</span>").insertAfter("#id_username");
+                        $("<span class='username_error' style='padding: 5px;color: red;font-weight: bold;'>Ushbu username band</span>").insertAfter("#id_username");
                     }
                     else{
                         $(".username_error").remove();
-                        $("<span class='username_error' style='padding: 5px;color: green;font-weight: bold;'>Username Available</span>").insertAfter("#id_username");
+                        $("<span class='username_error' style='padding: 5px;color: green;font-weight: bold;'>Foydalanish mumkin</span>").insertAfter("#id_username");
                     }
                 })
                 .fail(function(){
-                    console.log("failed");
+                    console.log("Muvaffaqiyatsiz");
                 })
             }
             else{

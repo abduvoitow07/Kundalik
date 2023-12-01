@@ -51,13 +51,13 @@ def join_class_room(request,subject_id,session_year_id):
                     return render(request,"student_template/join_class_room_start.html",{"username":request.user.username,"password":onlineclass.room_pwd,"roomid":onlineclass.room_name})
 
                 else:
-                    return HttpResponse("This Online Session is Not For You")
+                    return HttpResponse("Ushbu o'quv yili siz uchun emas")
             else:
-                return HttpResponse("This Subject is Not For You")
+                return HttpResponse("Bu fan siz uchun emas")
         else:
-            return HttpResponse("Session Year Not Found")
+            return HttpResponse("O'quv yili topilmadi")
     else:
-        return HttpResponse("Subject Not Found")
+        return HttpResponse("Fan topilmadi")
 
 
 def student_view_attendance(request):
@@ -97,10 +97,10 @@ def student_apply_leave_save(request):
         try:
             leave_report=LeaveReportStudent(student_id=student_obj,leave_date=leave_date,leave_message=leave_msg,leave_status=0)
             leave_report.save()
-            messages.success(request, "Successfully Applied for Leave")
+            messages.success(request, "Xabar(Sabab) muvaffaqiyatli yuborildi")
             return HttpResponseRedirect(reverse("student_apply_leave"))
         except:
-            messages.error(request, "Failed To Apply for Leave")
+            messages.error(request, "Xabar(Sabab) yuborilmadi")
             return HttpResponseRedirect(reverse("student_apply_leave"))
 
 
@@ -119,10 +119,10 @@ def student_feedback_save(request):
         try:
             feedback=FeedBackStudent(student_id=student_obj,feedback=feedback_msg,feedback_reply="")
             feedback.save()
-            messages.success(request, "Successfully Sent Feedback")
+            messages.success(request, "Fikr-mulohaza muvaffaqiyatli yuborildi")
             return HttpResponseRedirect(reverse("student_feedback"))
         except:
-            messages.error(request, "Failed To Send Feedback")
+            messages.error(request, "Fikr-mulohaza yuborilmadi")
             return HttpResponseRedirect(reverse("student_feedback"))
 
 def student_profile(request):
@@ -149,10 +149,10 @@ def student_profile_save(request):
             student=Students.objects.get(admin=customuser)
             student.address=address
             student.save()
-            messages.success(request, "Successfully Updated Profile")
+            messages.success(request, "Profil muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("student_profile"))
         except:
-            messages.error(request, "Failed to Update Profile")
+            messages.error(request, "Profilni tahrirlab bo‘lmadi")
             return HttpResponseRedirect(reverse("student_profile"))
 
 @csrf_exempt

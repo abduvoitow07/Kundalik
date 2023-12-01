@@ -193,10 +193,10 @@ def staff_feedback_save(request):
         try:
             feedback=FeedBackStaffs(staff_id=staff_obj,feedback=feedback_msg,feedback_reply="")
             feedback.save()
-            messages.success(request, "Successfully Sent Feedback")
+            messages.success(request, "Fikr-mulohaza muvaffaqiyatli yuborildi")
             return HttpResponseRedirect(reverse("staff_feedback"))
         except:
-            messages.error(request, "Failed To Send Feedback")
+            messages.error(request, "Fikr-mulohaza yuborib bo‘lmadi")
             return HttpResponseRedirect(reverse("staff_feedback"))
 
 def staff_profile(request):
@@ -223,10 +223,10 @@ def staff_profile_save(request):
             staff=Staffs.objects.get(admin=customuser.id)
             staff.address=address
             staff.save()
-            messages.success(request, "Successfully Updated Profile")
+            messages.success(request, "Profil muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("staff_profile"))
         except:
-            messages.error(request, "Failed to Update Profile")
+            messages.error(request, "Profilni tahrirlab bo‘lmadi")
             return HttpResponseRedirect(reverse("staff_profile"))
 
 @csrf_exempt
@@ -269,15 +269,15 @@ def save_student_result(request):
             result.subject_assignment_marks=assignment_marks
             result.subject_exam_marks=exam_marks
             result.save()
-            messages.success(request, "Successfully Updated Result")
+            messages.success(request, "Baho muvaffaqiyatli tahrirlandi")
             return HttpResponseRedirect(reverse("staff_add_result"))
         else:
             result=StudentResult(student_id=student_obj,subject_id=subject_obj,subject_exam_marks=exam_marks,subject_assignment_marks=assignment_marks)
             result.save()
-            messages.success(request, "Successfully Added Result")
+            messages.success(request, "O'quvchi muvaffaqiyatli baholandi")
             return HttpResponseRedirect(reverse("staff_add_result"))
     except:
-        messages.error(request, "Failed to Add Result")
+        messages.error(request, "O'quvchi baholanmadi")
         return HttpResponseRedirect(reverse("staff_add_result"))
 
 @csrf_exempt

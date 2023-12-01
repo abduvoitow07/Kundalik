@@ -7,6 +7,8 @@
   <title>JURNAL | O'quvchi</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'dist/img/favicon.png' %}" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}">
   <!-- Ionicons -->
@@ -27,6 +29,8 @@
   <link rel="stylesheet" href="{% static "plugins/summernote/summernote-bs4.css" %}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Bootstrap 5 icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     {% block custom_css %}{% endblock custom_css %}
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -40,13 +44,11 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-    <h4 style="margin-left: 10px;margin-top: 5px;">Jurnal | O'quvchi sahifasi</h4>
+    <h4 style="margin-left: 10px;margin-top: 5px;">Jurnal | O'quvchi</h4>
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">
-          Logout
-        </a>
+        <a class="nav-link" href="{% url 'logout' %}">Chiqish</a>
       </li>
     </ul>
 
@@ -71,7 +73,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'admin_home' %}">Bosh sahifa</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

@@ -1,6 +1,6 @@
 {% extends 'student_template/base_template.html' %}
 {% block page_title %}
-Result
+Baholar
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -13,17 +13,17 @@ Result
             <!-- /.card -->
            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Result</h3>
+                <h3 class="card-title">Baholar</h3>
               </div>
 
                <div class="table">
                <table class="table">
                    <tr>
                        <th>ID</th>
-                       <th>Subject</th>
-                       <th>Assignment Marks</th>
-                       <th>Exam Marks</th>
-                       <th>Status</th>
+                       <th>Fan</th>
+                       <th>Uy vazifasi uchun baho</th>
+                       <th>Mashq uchun baho</th>
+                       <!-- <th>Status</th> -->
                    </tr>
                    {% for row in studentresult %}
                         <tr>
@@ -31,13 +31,13 @@ Result
                             <td>{{ row.subject_id.subject_name }}</td>
                             <td>{{ row.subject_assignment_marks }}</td>
                             <td>{{ row.subject_exam_marks }}</td>
-                            <td>
+                            <!-- <td>
                                 {% if row.subject_exam_marks >= 40 %}
                                 <span class="alert alert-success">PASS</span>
                                 {% else %}
                                  <span class="alert alert-danger">FAIL</span>
                                 {% endif %}
-                            </td>
+                            </td> -->
                         </tr>
                    {% endfor %}
                </table>

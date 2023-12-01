@@ -1,6 +1,6 @@
 {% extends 'hod_template/base_template.html' %}
 {% block page_title %}
-Fanlarni yangilash
+"<span style="font-family: 'Times New Roman', Times, serif;">{{ subject.subject_name }}</span>" ni tahrirlash
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -11,7 +11,7 @@ Fanlarni yangilash
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Fanlarni yangilash</h3>
+                <h3 class="card-title">Fanni tahrirlash</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -20,11 +20,11 @@ Fanlarni yangilash
                 <div class="card-body">
                   <div class="form-group">
                     <label>Fan nomi</label>
-                    <input type="text" class="form-control" name="subject_name" placeholder="Enter Subject" value="{{ subject.subject_name }}">
-                    <input type="hidden" class="form-control" name="subject_id" placeholder="Enter Subject" value="{{ subject.id }}">
+                    <input type="text" class="form-control" name="subject_name" placeholder="Fan nomi" value="{{ subject.subject_name }}" required>
+                    <input type="hidden" class="form-control" name="subject_id" placeholder="Fan nomi" value="{{ subject.id }}">
                   </div>
                    <div class="form-group">
-                    <label>Kusrs</label>
+                    <label>Guruh nomi</label>
                     <select class="form-control" name="course">
                         {% for course in courses %}
                               <option value="{{ course.id }}" {% if course.id == subject.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
@@ -56,7 +56,7 @@ Fanlarni yangilash
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Save Subject</button>
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Saqlash</button>
                 </div>
               </form>
             </div>

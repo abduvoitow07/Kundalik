@@ -1,6 +1,6 @@
 {% extends 'student_template/base_template.html' %}
 {% block page_title %}
-Leave Report and Apply for Leave
+Dars qoldirish
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -11,7 +11,7 @@ Leave Report and Apply for Leave
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Apply for Leave</h3>
+                <h3 class="card-title">Dars qoldirish</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -19,13 +19,18 @@ Leave Report and Apply for Leave
                 <div class="card-body">
 
                    <div class="form-group">
-                    <label>Leave Date </label>
+                    <label>Dars qoldirilgan sana </label>
                        {% csrf_token %}
-                    <input type="date" name="leave_date" class="form-control" placeholder="Leave Date">
+                    <input type="date" name="leave_date" class="form-control" placeholder="Dars qoldirilgan sana" required>
                   </div>
                   <div class="form-group">
-                    <label>Leave Reason</label>
-                    <textarea class="form-control" rows="6" name="leave_msg"></textarea>
+                    <label>Xabar (Sabab)</label>
+                    <textarea class="form-control" rows="6" name="leave_msg" maxlength="50" required></textarea>
+                    <!-- <select class="form-control" name="leave_msg" id="">
+                      <option value="Kasal">Kasal</option>
+                      <option value="Darsdan ozod qilish">Ozod qilish</option>
+                      <option value=""></option>
+                    </select> -->
                   </div>
                    <div class="form-group">
                       {% if messages %}
@@ -44,7 +49,7 @@ Leave Report and Apply for Leave
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Apply for Leave</button>
+                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Yuborish</button>
                 </div>
                </form>
             </div>
@@ -52,16 +57,16 @@ Leave Report and Apply for Leave
             <!-- /.card -->
            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Leave Apply History</h3>
+                <h3 class="card-title">Dars qoldirish tarixi</h3>
               </div>
 
-               <div class="table">
-               <table class="table">
+               <div class="card-body table-responsive p-0">
+               <table class="table table-hover text-nowrap">
                    <tr>
                        <th>ID</th>
-                       <th>Leave Date</th>
-                       <th>Leave Message</th>
-                       <th>Leave Status</th>
+                       <th>Sana</th>
+                       <th>Xabar (Sabab)</th>
+                       <th>Tasdiqlash</th>
                    </tr>
                    {% for row in leave_data %}
                         <tr>
@@ -70,11 +75,11 @@ Leave Report and Apply for Leave
                             <td>{{ row.leave_message }}</td>
                             <td>
                                 {% if row.leave_status == 1 %}
-                                    <span class="alert alert-success">Approved</span>
+                                    <button class="btn btn-success" disabled="disabled">Tasdiqlangan</button>
                                 {% elif row.leave_status == 2 %}
-                                    <span class="alert alert-danger">Rejected</span>
+                                    <button class="btn btn-danger" disabled="disabled">Rad etilgan</button>
                                 {% else %}
-                                    <span class="alert alert-info">Pending</span>
+                                    <button class="btn btn-info" disabled="disabled">Kutilmoqda...</button>
                                 {% endif %}
                             </td>
                         </tr>

@@ -1,6 +1,6 @@
 {% extends 'hod_template/base_template.html' %}
 {% block page_title %}
-Manage Student
+Bildirishnomalar
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -12,11 +12,11 @@ Manage Student
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Students</h3>
+                <h3 class="card-title">O'quvchilar</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Qidirish">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -30,23 +30,22 @@ Manage Student
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>User Name</th>
+                      <th>O'quvchi</th>
+                      <!-- <th>Username</th> -->
                       <th>Email</th>
-                      <th>Action</th>
+                      <th>Guruh</th>
+                      <th>Bildirishnoma</th>
                     </tr>
                   </thead>
                   <tbody>
                   {% for student in students %}
                     <tr>
                       <td>{{ student.admin.id }}</td>
-                      <td>{{ student.admin.first_name }}</td>
-                      <td>{{ student.admin.last_name }}</td>
-                      <td>{{ student.admin.username }}</td>
+                      <td>{{ student.admin.first_name }} {{ student.admin.last_name }}</td>
+                      <!-- <td>{{ student.admin.username }}</td> -->
                       <td>{{ student.admin.email }}</td>
-                      <td>{{ student.address }}</td>
-                      <td><a href="#" class="btn btn-success show_notification" data-toggle="modal" data-target="#myModal">Send Notification</a></td>
+                      <td>{{ student.course_id.course_name }}</td>
+                      <td><a href="#" class="btn btn-success show_notification" data-toggle="modal" data-target="#myModal">Xabar yuborish</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>
@@ -66,20 +65,18 @@ Manage Student
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Send Notification to <span id="name_span"></span></h4>
+          <h5 class="modal-title">"<span style="font-family: 'Times New Roman', Times, serif;" id="name_span"></span>" ga xabar yuborish</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <input type="text" name="message" class="form-control" id="message_not">
-             <input type="hidden" name="student_id" class="form-control" id="student_id">
+            <!-- <input type="text" name="message" class="form-control" id="message_not"> -->
+            <textarea class="form-control" name="message" class="form-control" id="message_not" rows="5" id="reply_message" placeholder="Xabar" required></textarea>
+            <input type="hidden" name="student_id" class="form-control" id="student_id" required>
           </div>
           <div class="form-group">
-            <button class="btn btn-info btn-block send_notification_btn" type="button">Send Notification</button>
+            <button class="btn btn-info btn-block send_notification_btn" type="button">Yuborish <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
 
@@ -91,8 +88,7 @@ Manage Student
 <script>
   $(".show_notification").click(function(){
       var student_id=$(this).parents("tr").children("td:eq(0)").text();
-      var student_name=$(this).parents("tr").children("td:eq(3)").text();
-      console.log(student_id);
+      var student_name=$(this).parents("tr").children("td:eq(2)").text();
       $("#student_id").val(student_id);
       $("#name_span").text(student_name);
 
@@ -102,22 +98,28 @@ Manage Student
       var id=$("#student_id").val();
       var message=$("#message_not").val();
       sendNotification(id,message);
+      $(this).attr("disabled","disabled")
+      $(this).text("Yuborilmoqda...")
   });
 
   function sendNotification(id,message){
            $.ajax({
-            url:'{% url 'send_student_notification' %}',
+            url:"{% url 'send_student_notification' %}",
             type:'POST',
             data:{id:id,message:message},
         })
+        
         .done(function(response){
             if(response=="True"){
-                alert("Message Sent");
+                alert("Xabar yuborildi");
             }
             else{
-                alert("Failed to Send Message");
+                alert("Xabar yuborishda xato");
             }
+            location.reload()
         });
+        
   }
 </script>
+
 {% endblock custom_js %}

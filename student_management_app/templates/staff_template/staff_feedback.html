@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Feedback Message
+Fikr-mulohaza
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -11,7 +11,7 @@ Feedback Message
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Leave a Feedback Message</h3>
+                <h3 class="card-title">Fikr-mulohaza</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -20,8 +20,8 @@ Feedback Message
 
                     {% csrf_token %}
                   <div class="form-group">
-                    <label>Feedback Message</label>
-                    <textarea class="form-control" rows="6" name="feedback_msg"></textarea>
+                    <label>Xabar</label>
+                    <textarea class="form-control" rows="6" name="feedback_msg" required></textarea>
                   </div>
                    <div class="form-group">
                       {% if messages %}
@@ -40,7 +40,7 @@ Feedback Message
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Leave a Feedback Message</button>
+                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Yuborish</button>
                 </div>
                </form>
             </div>
@@ -48,15 +48,15 @@ Feedback Message
             <!-- /.card -->
            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Feedback History</h3>
+                <h3 class="card-title">Fikr-mulohazalar tarixi</h3>
               </div>
 
                <div class="table">
                <table class="table">
                    <tr>
                        <th>ID</th>
-                       <th>Feedback Message</th>
-                       <th>Feedback Reply</th>
+                       <th>Xabar</th>
+                       <th>Javob berish</th>
                    </tr>
                    {% for row in feedback_data %}
                         <tr>

@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Live Class Room
+Jonli Efir
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -11,7 +11,7 @@ Live Class Room
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Start Live Class Room</h3>
+                <h3 class="card-title">Jonli Efir</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -19,7 +19,7 @@ Live Class Room
                   {% csrf_token %}
                 <div class="card-body">
                    <div class="form-group">
-                    <label>Subject </label>
+                    <label>Guruh </label>
                     <select class="form-control" name="subject" id="subject">
                         {% for subject in subjects %}
                           <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
@@ -27,10 +27,10 @@ Live Class Room
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Session Year</label>
+                    <label>O'quv yili</label>
                     <select class="form-control" name="session_year" id="session_year">
                         {% for session_year in session_years %}
-                          <option value="{{ session_year.id }}">{{ session_year.session_start_year }} TO {{ session_year.session_end_year }}</option>
+                          <option value="{{ session_year.id }}">{{ session_year.session_start_year }} -- {{ session_year.session_end_year }}</option>
                         {% endfor %}
                     </select>
                   </div>
@@ -51,7 +51,7 @@ Live Class Room
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Start Class</button>
+                  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-video"></i> Boshlash</button>
                 </div>
               </form>
             </div>

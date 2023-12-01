@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Home
+Bosh sahifa
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -12,13 +12,12 @@ Home
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>{{ students_count }}</h3>
-
-                <p>Student Under me</p>
+                <p>O'quvchilar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fa fa-user"></i>
               </div>
-              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">Ko'rish <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -27,13 +26,12 @@ Home
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>{{ attendance_count }}</h3>
-
-                <p>Total Attendance Taken</p>
+                <p>Qabul qilingan davomat</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-table"></i>
               </div>
-              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">Ko'rish <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -42,13 +40,12 @@ Home
             <div class="small-box bg-warning">
               <div class="inner">
                 <h3>{{ leave_count }}</h3>
-
-                <p>Total Leave Taken</p>
+                <p>Umumiy dars qoldirish</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="{% url 'staff_apply_leave' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'staff_apply_leave' %}" class="small-box-footer">Ko'rish <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -57,13 +54,12 @@ Home
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>{{ subject_count }}</h3>
-
-                <p>Total Subjects</p>
+                <p>Guruhlar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fa fa-book"></i>
               </div>
-              <a href="#" class="small-box-footer">&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{% url 'staff_take_attendance' %}" class="small-box-footer">Ko'rish <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -81,7 +77,7 @@ Home
                     </div>
                   </div>
                   <div class="card-body">
-                    <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <div id="pnlEventCalendar" style="width:100%;"></div>
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -89,7 +85,7 @@ Home
               <div class="col-lg-6">
                <div class="card card-success">
                   <div class="card-header">
-                    <h3 class="card-title">Attend Subject</h3>
+                    <h3 class="card-title">Qabul qilingan davomat</h3>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -110,8 +106,8 @@ Home
               <div class="col-lg-12">
                    <div class="card card-info">
                   <div class="card-header">
-                    <h3 class="card-title">Student Attendance Data</h3>
-
+                    <h3 class="card-title">O'quvchilar davomati</h3>
+ 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                       </button>
@@ -134,30 +130,7 @@ Home
 {% block custom_js %}
 <script>
     $(document).ready(function(){
-           var pieData  = {
-              labels: [
-                  'Attendance',
-                  'Leave'
-              ],
-              datasets: [
-                {
-                  data: [{{ attendance_count }},{{ leave_count }}],
-                  backgroundColor : ['#f56954', '#00a65a'],
-                }
-              ]
-            }
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieOptions     = {
-              maintainAspectRatio : false,
-              responsive : true,
-            }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            var pieChart = new Chart(pieChartCanvas, {
-              type: 'pie',
-              data: pieData,
-              options: pieOptions
-            });
+  
 
 
                 var attendance_list={{ attendance_list }};
@@ -166,7 +139,7 @@ Home
                   labels  : subject_list,
                   datasets: [
                     {
-                      label               : 'Attend Subject Chart',
+                      label               : 'Davomat qilingan guruhlar',
                       backgroundColor     : 'rgba(60,141,188,0.9)',
                       borderColor         : 'rgba(60,141,188,0.8)',
                       pointRadius          : false,
@@ -202,7 +175,7 @@ Home
                   labels  : student_list,
                   datasets: [
                     {
-                      label               : 'Student Attendance Chart For Present',
+                      label               : 'Ishtirok etish',
                       backgroundColor     : 'rgba(60,141,188,0.9)',
                       borderColor         : 'rgba(60,141,188,0.8)',
                       pointRadius          : false,
@@ -213,7 +186,7 @@ Home
                       data                : present_list
                     },
                     {
-                      label               : 'Student Attendance Chart for Absent',
+                      label               : 'Dars qoldirish',
                       backgroundColor     : 'rgba(200,141,188,0.9)',
                       borderColor         : 'rgba(200,141,188,0.8)',
                       pointRadius          : false,
@@ -264,7 +237,7 @@ Home
         messaging
             .requestPermission()
             .then(function () {
-                console.log("Notification Permission");
+                console.log("Bildirishnoma ruxsati");
                 return messaging.getToken();
             })
             .then(function (token) {
@@ -297,7 +270,7 @@ Home
     messaging.onTokenRefresh(function () {
         messaging.getToken()
             .then(function (newtoken) {
-                console.log("New Token : "+ newtoken);
+                console.log("Yangi token: "+ newtoken);
                 sendToServer(newtoken);
             })
             .catch(function (reason) {
@@ -307,19 +280,27 @@ Home
 
     function sendToServer(token){
          $.ajax({
-                url:'{% url 'staff_fcmtoken_save' %}',
+                url:"{% url 'staff_fcmtoken_save' %}",
                 type:'POST',
                 data:{token:token},
             })
             .done(function(response){
                 if(response=="True"){
-                    console.log("Token Save");
+                    console.log("Token saqlandi");
                 }
                 else{
-                    console.log("Error in Token Save");
+                    console.log("Tokenni saqlashda xato");
                 }
             });
     }
     IntitalizeFireBaseMessaging();
 </script>
+<script>
+  $(function () {
+    $('#pnlEventCalendar').calendar({months: ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'],
+      days: ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'],onSelect: function (event) {
+      $('#lblEventCalendar').text(event.label);
+    }});
+  });
+  </script>
 {% endblock custom_js %}

@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Edit Results
+Bahoni tahrirlash
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -13,7 +13,7 @@ Edit Results
                  {% csrf_token %}
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Results</h3>
+                <h3 class="card-title">Bahoni tahrirlash</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -36,13 +36,11 @@ Edit Results
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student">Update Result</button>
+                  <button type="submit" class="btn btn-primary btn-block" id="fetch_student"><i class="fa fa-save"></i> Saqlash</button>
                 </div>
             </div>
              </form>
             <!-- /.card -->
-
-
 
           </div>
           </div>
@@ -70,7 +68,7 @@ Edit Results
             var subject=$("#id_subject_id").val()
 
             $.ajax({
-                url:'{% url 'get_students' %}',
+                url:"{% url 'get_students' %}",
                 type:'POST',
                 data:{subject:subject,session_year:session_year},
             })
@@ -87,7 +85,7 @@ Edit Results
 
             })
             .fail(function(){
-                alert("Error in Fetching Student")
+                alert("O'quvchi topilmadi")
             });
         }
 
@@ -96,13 +94,13 @@ Edit Results
             var subject=$("#id_subject_id").val()
 
             $.ajax({
-                url:'{% url 'fetch_result_student' %}',
+                url:"{% url 'fetch_result_student' %}",
                 type:'POST',
                 data:{subject_id:subject,student_id:id_student_ids},
             })
             .done(function(response){
                 if(response=="False"){
-                    alert("Result Not Found")
+                    alert("Baho topilmadi")
                 }
                 else{
                     var json_data=JSON.parse(response);
@@ -112,7 +110,7 @@ Edit Results
 
             })
             .fail(function(){
-                alert("Error in Fetching Student")
+                alert("O'quvchi topilmadi")
             });
         }
     })

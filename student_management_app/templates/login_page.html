@@ -5,9 +5,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>JURNAL | Log in</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'dist/img/favicon.png' %}" type="image/x-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{% static "plugins/fontawesome-free/css/all.min.css" %}">
   <!-- Ionicons -->
@@ -22,7 +23,8 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>JURNAL</b></a>
+    <!-- <a href="/"><b>JURNAL</b></a> -->
+    <a href="/"><img class="w-50 p-3" src="{% static 'dist/img/Jurnal.png' %}" alt=""></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -40,36 +42,37 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <input type="password" class="form-control" placeholder="Password" name="password" id="password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span id="close" class="fas fa-eye" onclick="lock()"></span>
+              <span id="open" class="fas fa-eye-slash" onclick="lock()"></span>
             </div>
           </div>
-        </div>
+        </div> 
         <div class="input-group mb-3">
-                <div class="g-recaptcha" data-sitekey="6LeWtqUZAAAAAMO6YmxX5_XWel9hLWrb_iEiff26"></div>
+          <div class="g-recaptcha" data-sitekey="6LeWtqUZAAAAAMO6YmxX5_XWel9hLWrb_iEiff26"></div>
         </div>
         <div class="row">
-          <!-- /.col -->
+          <!-- /.col -->  
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" >Kirish</button>
           </div><!-- /.col -->
            <div class="col-12 text-center">
              <a href="{% url 'password_reset' %}">Reset Password</a>
           </div><!-- /.col -->
 
-          <!-- 
+   
         </div>
         <div class="row">
           {% if messages %}
          <div class="col-12">
             {% for message in messages %}
             {% if message.tags == 'error' %}
-            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+            <div class="alert alert-danger" style="margin-top:10px">Email yoki parol xato!</div>
             {% endif %}
             {% if message.tags == 'success' %}
-            <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+            <div class="alert alert-success" style="margin-top:10px">Muvaffaqiyatli</div>
             {% endif %}
             {% endfor %}
           </div>
@@ -84,12 +87,26 @@
   </div>
 </div>
 <!-- /.login-box -->
-
+<script>
+  document.getElementById("close").style.display = "none";
+  function lock() {
+    var x = document.getElementById("password");
+    if (x.type == "password") {
+      document.getElementById("open").style.display = "none";
+      document.getElementById("close").style.display = "block";
+      x.type = "text"; 
+    } else {
+      x.type = "password";
+      document.getElementById("open").style.display = "block";
+      document.getElementById("close").style.display = "none";
+    }
+  }
+  </script>
 <!-- jQuery -->
 <script src="{% static "plugins/jquery/jquery.min.js" %}"></script>
 <!-- Bootstrap 4 -->
 <script src="{% static "plugins/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
-<!-- AdminLTE App -->
+<!-- App -->
 <script src="{% static "dist/js/adminlte.min.js" %}"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 

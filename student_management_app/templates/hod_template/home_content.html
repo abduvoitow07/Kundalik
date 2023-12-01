@@ -16,7 +16,7 @@ Bosh sahifa
                 <p>O'quvchilar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-user"></i>
               </div>
               <a href="{% url 'manage_student' %}" class="small-box-footer">Ko'rish  <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -31,7 +31,7 @@ Bosh sahifa
                 <p>O'qituvchilar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-chalkboard-teacher"></i>
               </div>
               <a href="{% url 'manage_staff' %}" class="small-box-footer">Ko'rish  <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -43,10 +43,10 @@ Bosh sahifa
               <div class="inner">
                 <h3>{{ course_count }}</h3>
 
-                <p>Kurslar</p>
+                <p>Guruhlar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-users"></i>
               </div>
               <a href="{% url 'manage_course' %}" class="small-box-footer">Ko'rish  <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -61,7 +61,7 @@ Bosh sahifa
                 <p>Fanlar</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-book"></i>
               </div>
               <a href="{% url 'manage_subject' %}" class="small-box-footer">Ko'rish <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -144,7 +144,7 @@ Bosh sahifa
               <div class="col-lg-12">
                   <div class="card card-success">
                   <div class="card-header">
-                    <h3 class="card-title">O'qituvchilarning dars qoldirishlari va davomat</h3>
+                    <h3 class="card-title">Qabul qilingan davomat</h3>
 
                     <div class="card-tools">
                       <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -157,7 +157,6 @@ Bosh sahifa
                       <canvas id="barChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                     </div>
                   </div>
-                  <!-- /.card-body -->
                 </div>
               </div>
           </div>
@@ -192,8 +191,8 @@ Bosh sahifa
 
             var pieData        = {
                   labels: [
-                      'Students',
-                      'Staffs'
+                      "O'quvchilar",
+                      "O'qituvchilar"
                   ],
                   datasets: [
                     {
@@ -299,7 +298,7 @@ Bosh sahifa
                           labels  : staff_name_list,
                           datasets: [
                             {
-                              label               : 'Leaves',
+                              label               : 'Dars qoldirish',
                               backgroundColor     : 'rgba(60,141,188,0.9)',
                               borderColor         : 'rgba(60,141,188,0.8)',
                               pointRadius          : false,
@@ -310,7 +309,7 @@ Bosh sahifa
                               data                : attendance_absent_list_staff
                             },
                             {
-                              label               : 'Attendance',
+                              label               : 'Ishtirok etish',
                               backgroundColor     : 'rgba(210, 214, 222, 1)',
                               borderColor         : 'rgba(210, 214, 222, 1)',
                               pointRadius         : false,
@@ -348,7 +347,7 @@ Bosh sahifa
                           labels  : student_name_list,
                           datasets: [
                             {
-                              label               : 'Leaves',
+                              label               : 'Dars qoldirish',
                               backgroundColor     : 'rgba(60,141,188,0.9)',
                               borderColor         : 'rgba(60,141,188,0.8)',
                               pointRadius          : false,
@@ -359,7 +358,7 @@ Bosh sahifa
                               data                : attendance_absent_list_student
                             },
                             {
-                              label               : 'Attendance',
+                              label               : 'Ishtirok etish',
                               backgroundColor     : 'rgba(210, 214, 222, 1)',
                               borderColor         : 'rgba(210, 214, 222, 1)',
                               pointRadius         : false,

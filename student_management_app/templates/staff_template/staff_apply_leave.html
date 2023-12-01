@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Leave Report and Apply for Leave
+Dars qoldirish
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -11,7 +11,7 @@ Leave Report and Apply for Leave
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Apply for Leave</h3>
+                <h3 class="card-title">Dars qoldirish</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -19,12 +19,12 @@ Leave Report and Apply for Leave
                 <div class="card-body">
 
                    <div class="form-group">
-                    <label>Leave Date </label>
+                    <label>Dars qoldirilgan sana </label>
                        {% csrf_token %}
                     <input type="date" name="leave_date" class="form-control" placeholder="Leave Date">
                   </div>
                   <div class="form-group">
-                    <label>Leave Reason</label>
+                    <label>Sababi</label>
                     <textarea class="form-control" rows="6" name="leave_msg"></textarea>
                   </div>
                    <div class="form-group">
@@ -52,16 +52,16 @@ Leave Report and Apply for Leave
             <!-- /.card -->
            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Leave Apply History</h3>
+                <h3 class="card-title">Dars qoldirish tarixi</h3>
               </div>
 
                <div class="table">
                <table class="table">
                    <tr>
                        <th>ID</th>
-                       <th>Leave Date</th>
-                       <th>Leave Message</th>
-                       <th>Leave Status</th>
+                       <th>Dars qoldirilgan sana</th>
+                       <th>Sababi</th>
+                       <th></th>
                    </tr>
                    {% for row in leave_data %}
                         <tr>
@@ -70,11 +70,11 @@ Leave Report and Apply for Leave
                             <td>{{ row.leave_message }}</td>
                             <td>
                                 {% if row.leave_status == 1 %}
-                                    <span class="alert alert-success">Approved</span>
+                                    <span class="alert alert-success">Tasdiqlangan</span>
                                 {% elif row.leave_status == 2 %}
-                                    <span class="alert alert-danger">Rejected</span>
+                                    <span class="alert alert-danger">Rad etilgan</span>
                                 {% else %}
-                                    <span class="alert alert-info">Pending</span>
+                                    <span class="alert alert-info">Kutilmoqda</span>
                                 {% endif %}
                             </td>
                         </tr>

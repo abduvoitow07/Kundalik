@@ -32,7 +32,7 @@ class AddStudentForm(forms.Form):
         sessions = SessionYearModel.object.all()
 
         for ses in sessions:
-            small_ses = (ses.id, str(ses.session_start_year)+"   TO  "+str(ses.session_end_year))
+            small_ses = (ses.id, str(ses.session_start_year)+"   --  "+str(ses.session_end_year))
             session_list.append(small_ses)
     except:
         session_list=[]
@@ -44,15 +44,15 @@ class AddStudentForm(forms.Form):
 
     course=forms.ChoiceField(label="Guruh",choices=course_list,widget=forms.Select(attrs={"class":"form-control"}))
     sex=forms.ChoiceField(label="Jinsi",choices=gender_choice,widget=forms.Select(attrs={"class":"form-control"}))
-    session_year_id=forms.ChoiceField(label="Sessiya",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
-    profile_pic=forms.FileField(label="Profil rasmi",max_length=50,widget=forms.FileInput(attrs={"class":"form-control"}))
+    session_year_id=forms.ChoiceField(label="O'quv yili",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
+    # profile_pic=forms.FileField(label="Profil rasmi",max_length=50,widget=forms.FileInput(attrs={"class":"form-control"}))
 
 class EditStudentForm(forms.Form):
     email=forms.EmailField(label="Email",max_length=50,widget=forms.EmailInput(attrs={"class":"form-control"}))
-    first_name=forms.CharField(label="First Name",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
-    last_name=forms.CharField(label="Last Name",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
+    first_name=forms.CharField(label="Familiya",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
+    last_name=forms.CharField(label="Ism",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
     username=forms.CharField(label="Username",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
-    address=forms.CharField(label="Address",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
+    address=forms.CharField(label="Manzil",max_length=50,widget=forms.TextInput(attrs={"class":"form-control"}))
 
 
     course_list=[]
@@ -69,21 +69,21 @@ class EditStudentForm(forms.Form):
         sessions = SessionYearModel.object.all()
 
         for ses in sessions:
-            small_ses = (ses.id, str(ses.session_start_year)+"   TO  "+str(ses.session_end_year))
+            small_ses = (ses.id, str(ses.session_start_year)+"   --  "+str(ses.session_end_year))
             session_list.append(small_ses)
     except:
         pass
         #session_list = []
 
     gender_choice=(
-        ("Male","Male"),
-        ("Female","Female")
+        ("Male","Erkak"),
+        ("Female","Ayol")
     )
 
-    course=forms.ChoiceField(label="Course",choices=course_list,widget=forms.Select(attrs={"class":"form-control"}))
-    sex=forms.ChoiceField(label="Sex",choices=gender_choice,widget=forms.Select(attrs={"class":"form-control"}))
-    session_year_id=forms.ChoiceField(label="Session Year",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
-    profile_pic=forms.FileField(label="Profile Pic",max_length=50,widget=forms.FileInput(attrs={"class":"form-control"}),required=False)
+    course=forms.ChoiceField(label="Guruh",choices=course_list,widget=forms.Select(attrs={"class":"form-control"}))
+    sex=forms.ChoiceField(label="Jinsi",choices=gender_choice,widget=forms.Select(attrs={"class":"form-control"}))
+    session_year_id=forms.ChoiceField(label="O'quv yili",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
+    # profile_pic=forms.FileField(label="Profil rasmi",max_length=50,widget=forms.FileInput(attrs={"class":"form-control"}),required=False)
 
 class EditResultForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -103,14 +103,14 @@ class EditResultForm(forms.Form):
     try:
         sessions=SessionYearModel.object.all()
         for session in sessions:
-            session_single=(session.id,str(session.session_start_year)+" TO "+str(session.session_end_year))
+            session_single=(session.id,str(session.session_start_year)+" -- "+str(session.session_end_year))
             session_list.append(session_single)
     except:
         session_list=[]
 
-    subject_id=forms.ChoiceField(label="Subject",widget=forms.Select(attrs={"class":"form-control"}))
-    session_ids=forms.ChoiceField(label="Session Year",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
-    student_ids=ChoiceNoValidation(label="Student",widget=forms.Select(attrs={"class":"form-control"}))
-    assignment_marks=forms.CharField(label="Assignment Marks",widget=forms.TextInput(attrs={"class":"form-control"}))
-    exam_marks=forms.CharField(label="Exam Marks",widget=forms.TextInput(attrs={"class":"form-control"}))
+    subject_id=forms.ChoiceField(label="Guruh",widget=forms.Select(attrs={"class":"form-control"}))
+    session_ids=forms.ChoiceField(label="O'quv yili",choices=session_list,widget=forms.Select(attrs={"class":"form-control"}))
+    student_ids=ChoiceNoValidation(label="O'quvchi",widget=forms.Select(attrs={"class":"form-control"}))
+    assignment_marks=forms.CharField(label="Uy vazifasi uchun baho",widget=forms.TextInput(attrs={"class":"form-control"}))
+    exam_marks=forms.CharField(label="Mashq uchun baho",widget=forms.TextInput(attrs={"class":"form-control"}))
 

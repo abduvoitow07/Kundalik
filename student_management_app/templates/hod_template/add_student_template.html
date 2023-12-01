@@ -16,7 +16,7 @@ Yangi o'quvchi
               <!-- /.card-header -->
               <!-- form start -->
                 {% url 'add_student_save' as action_path %}
-                {% include 'hod_template/form_template.html' with messages=messages form=form action_path=action_path button_text="Add Student" %}
+                {% include 'hod_template/form_template.html' with messages=messages form=form action_path=action_path button_text="Saqlash" %}
             </div>
             <!-- /.card -->
 
@@ -36,7 +36,7 @@ Yangi o'quvchi
 
            if(email!=""){
                 $.ajax({
-                    url:'{% url 'check_email_exist' %}',
+                    url:"{% url 'check_email_exist' %}",
                     type:'POST',
                     data:{email:email}
                 })
@@ -44,15 +44,15 @@ Yangi o'quvchi
                     console.log(response);
                     if(response=="True"){
                         $(".email_error").remove();
-                        $("<span class='email_error' style='padding: 5px;color: red;font-weight: bold;'>Email Not Available</span>").insertAfter("#id_email");
+                        $("<span class='email_error' style='padding: 5px;color: red;font-weight: bold;'>Ushbu email band</span>").insertAfter("#id_email");
                     }
                     else{
                         $(".email_error").remove();
-                        $("<span class='email_error' style='padding: 5px;color: green;font-weight: bold;'>Email Available</span>").insertAfter("#id_email");
+                        $("<span class='email_error' style='padding: 5px;color: green;font-weight: bold;'>Foydalanish mumkin</span>").insertAfter("#id_email");
                     }
                 })
                 .fail(function(){
-                    console.log("failed");
+                    console.log("Muvaffaqiyatsiz");
                 })
             }
             else{
@@ -66,7 +66,7 @@ Yangi o'quvchi
 
             if(username!=""){
                 $.ajax({
-                    url:'{% url 'check_username_exist' %}',
+                    url:"{% url 'check_username_exist' %}",
                     type:'POST',
                     data:{username:username}
                 })
@@ -74,15 +74,15 @@ Yangi o'quvchi
                     console.log(response);
                     if(response=="True"){
                         $(".username_error").remove();
-                        $("<span class='username_error' style='padding: 5px;color: red;font-weight: bold;'>Username Not Available</span>").insertAfter("#id_username");
+                        $("<span class='username_error' style='padding: 5px;color: red;font-weight: bold;'>Ushbu username band</span>").insertAfter("#id_username");
                     }
                     else{
                         $(".username_error").remove();
-                        $("<span class='username_error' style='padding: 5px;color: green;font-weight: bold;'>Username Available</span>").insertAfter("#id_username");
+                        $("<span class='username_error' style='padding: 5px;color: green;font-weight: bold;'>Foydalanish mumkin</span>").insertAfter("#id_username");
                     }
                 })
                 .fail(function(){
-                    console.log("failed");
+                    console.log("Muvaffaqiyatsiz");
                 })
             }
             else{

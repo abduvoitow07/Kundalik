@@ -16,7 +16,7 @@ O'qituvchilarni boshqarish
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Qidirish">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -32,12 +32,12 @@ O'qituvchilarni boshqarish
                       <th>ID</th>
                       <th>Familiya</th>
                       <th>Ism</th>
-                      <!-- <th>Username</th> -->
+                      <th>Username</th>
                       <th>Email</th>
                       <th>Manzil</th>
-                      <th>Oxirgi kirish</th>
+                      <th>Oxirgi faollik</th>
                       <th>Qo'shilgan sana</th>
-                      <th></th>
+                      <th>Tahrirlash</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -46,12 +46,12 @@ O'qituvchilarni boshqarish
                       <td>{{ staff.admin.id }}</td>
                       <td>{{ staff.admin.first_name }}</td>
                       <td>{{ staff.admin.last_name }}</td>
-                      <!-- <td>{{ staff.admin.username }}</td> -->
+                      <td>{{ staff.admin.username }}</td>
                       <td>{{ staff.admin.email }}</td>
                       <td>{{ staff.address }}</td>
                       <td>{{ staff.admin.last_login }}</td>
                       <td>{{ staff.admin.date_joined }}</td>
-                      <td><a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success">Tahrirlash</a></td>
+                      <td><a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success"><i class="fa fa-edit"></i> Tahrirlash</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

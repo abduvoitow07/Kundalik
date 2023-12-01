@@ -1,6 +1,6 @@
 {% extends 'staff_template/base_template.html' %}
 {% block page_title %}
-Add Results
+Baho
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -13,13 +13,13 @@ Add Results
                  {% csrf_token %}
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Results</h3>
+                <h3 class="card-title">Baho</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
                 <div class="card-body">
                    <div class="form-group">
-                    <label>Subject </label>
+                    <label>Guruh</label>
                     <select class="form-control" name="subject" id="subject">
                         {% for subject in subjects %}
                           <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
@@ -27,10 +27,10 @@ Add Results
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Session Year</label>
+                    <label>O'quv yili</label>
                     <select class="form-control" name="session_year" id="session_year">
                         {% for session_year in session_years %}
-                          <option value="{{ session_year.id }}">{{ session_year.session_start_year }} TO {{ session_year.session_end_year }}</option>
+                          <option value="{{ session_year.id }}">{{ session_year.session_start_year }} -- {{ session_year.session_end_year }}</option>
                         {% endfor %}
                     </select>
                   </div>
@@ -51,7 +51,7 @@ Add Results
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="button" class="btn btn-primary btn-block" id="fetch_student">Fetch Student</button>
+                  <button type="button" class="btn btn-primary btn-block" id="fetch_student"><i class="fa fa-search"></i> Qidirish</button>
                 </div>
                 <div id="student_data" class="card-footer">
 
@@ -77,14 +77,14 @@ Add Results
             var session_year=$("#session_year").val()
 
             $.ajax({
-                url:'{% url 'get_students' %}',
+                url:"{% url 'get_students' %}",
                 type:'POST',
                 data:{subject:subject,session_year:session_year},
             })
             .done(function(response){
                 var json_data=JSON.parse(response);
                 console.log(json_data)
-                var div_data="<div class='form-group'><label>Student List</label><select class='student_list form-control' name='student_list'>";
+                var div_data="<div class='form-group'><label>O'quvchilar</label><select class='student_list form-control' name='student_list'>";
                 for(key in json_data)
                 {
                     div_data+="<option value='"+json_data[key]['id']+"'>ID : "+json_data[key]['id']+" : "+json_data[key]['name']+"</option>";
@@ -93,22 +93,22 @@ Add Results
                 div_data+="</div>";
                 div_data+="<div class='form-group'><div class='row'>"
                 div_data+="<div class='col-lg-6'>";
-                div_data+="<label> Assignment Marks : </label><input type='text' name='assignment_marks' class='form-control' placeholder='Assignment Marks'>";
+                div_data+="<label> Uy vazifasi uchun baho : </label><input type='number' name='assignment_marks' class='form-control' placeholder='Uy vazifasi uchun baho' min='1' max='5'>";
                 div_data+="</div>";
                 div_data+="<div class='col-lg-6'>";
-                div_data+="<label> Exam Marks : </label><input type='text' name='exam_marks' class='form-control' placeholder='Exam Marks'>";
+                div_data+="<label> Mashq uchun baho : </label><input type='number' name='exam_marks' class='form-control' placeholder='Mashq uchun baho' min='1' max='5'>";
                 div_data+="</div>"
                 div_data+="</div></div>";
 
                 div_data+="<div class='form-group'>";
-                div_data+="<button id='save_attendance' class='btn btn-success btn-block' type='submit'>Save Result</button>";
+                div_data+="<button id='save_attendance' class='btn btn-success btn-block' type='submit'><i class='fa fa-save'></i> Saqlash</button>";
                 div_data+="</div>";
 
                 $("#student_data").html(div_data);
 
             })
             .fail(function(){
-                alert("Error in Fetching Student")
+                alert("O'quvchi topilmadi")
             });
         });
     })
